@@ -34,19 +34,6 @@ public class MessagesDeserializer extends StdDeserializer<Messages> {
         module.addDeserializer(Message.class, new MessageDeserializer());
         messageMapper.registerModule(module);
 
-//        ArrayList<Message> messages = new ArrayList<>();
-//
-//        collectionNode.get("items").forEach(messageNode -> {
-//            try {
-//                messages.add(messageMapper.readValue(
-//                        messageNode.toString(),
-//                        Message.class
-//                ));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-
         List<Message> messages = messageMapper.readValue(
                 collectionNode.get("items").toString(),
                 new TypeReference<List<Message>>() {});
