@@ -7,11 +7,11 @@ public final class Mailbox {
 
     private final HTTPClient client;
 
-    public Mailbox(String apiUrl) {
+    public Mailbox(final String apiUrl) {
         client = new OkHTTPClient(apiUrl);
     }
 
-    public Mailbox(HTTPClient client) {
+    public Mailbox(final HTTPClient client) {
         this.client = client;
     }
 

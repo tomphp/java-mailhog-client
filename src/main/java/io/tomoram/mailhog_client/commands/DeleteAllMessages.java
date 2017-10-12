@@ -6,7 +6,7 @@ public final class DeleteAllMessages {
 
     private final HTTPClient http;
 
-    public DeleteAllMessages(HTTPClient http) {
+    public DeleteAllMessages(final HTTPClient http) {
         this.http = http;
     }
 

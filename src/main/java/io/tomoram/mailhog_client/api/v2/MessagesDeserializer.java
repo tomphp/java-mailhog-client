@@ -1,7 +1,6 @@
 package io.tomoram.mailhog_client.api.v2;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,16 +14,17 @@ import java.io.IOException;
 import java.util.List;
 
 class MessagesDeserializer extends StdDeserializer<Messages> {
-    public MessagesDeserializer() {
+    MessagesDeserializer() {
         this(null);
     }
 
-    public MessagesDeserializer(Class<?> vc) {
+    private MessagesDeserializer(final Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public Messages deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public Messages deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext)
+            throws IOException {
         JsonNode collectionNode = jsonParser.getCodec().readTree(jsonParser);
 
         ObjectMapper messageMapper = new ObjectMapper();
@@ -34,7 +34,7 @@ class MessagesDeserializer extends StdDeserializer<Messages> {
 
         List<Message> messages = messageMapper.readValue(
                 collectionNode.get("items").toString(),
-                new TypeReference<List<Message>>() {});
+                new TypeReference<List<Message>>() { });
 
         return new Messages(collectionNode.get("total").asInt(), messages);
     }

@@ -7,7 +7,7 @@ public final class GetNumberOfMessages {
 
     private final HTTPClient http;
 
-    public GetNumberOfMessages(HTTPClient http) {
+    public GetNumberOfMessages(final HTTPClient http) {
         this.http = http;
     }
 

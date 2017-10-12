@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public final class GetAllMessages {
     private final HTTPClient http;
 
-    public GetAllMessages(HTTPClient http) {
+    public GetAllMessages(final HTTPClient http) {
         this.http = http;
     }
 

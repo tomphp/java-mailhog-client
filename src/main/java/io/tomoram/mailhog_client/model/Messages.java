@@ -7,7 +7,7 @@ public final class Messages {
     private final int count;
     private final List<Message> messages;
 
-    public Messages(int count, List<Message> messages) {
+    public Messages(final int count, final List<Message> messages) {
         this.count = count;
         this.messages = messages;
     }

@@ -7,7 +7,7 @@ public final class Message {
     private final String sender;
     private final String[] recipients;
 
-    public Message(String sender, String[] recipients) {
+    public Message(final String sender, final String[] recipients) {
         this.sender = sender;
         this.recipients = recipients;
     }
@@ -43,16 +43,16 @@ public final class Message {
                 '}';
     }
 
-    public static class Builder {
+    public static final class Builder {
         private String sender;
         private ArrayList<String> recipients = new ArrayList<>();
 
-        public Builder addRecipient(String recipient) {
+        public Builder addRecipient(final String recipient) {
             recipients.add(recipient);
             return this;
         }
 
-        public Builder setSender(String sender) {
+        public Builder setSender(final String sender) {
             this.sender = sender;
             return this;
         }

@@ -9,16 +9,16 @@ import io.tomoram.mailhog_client.model.Message;
 import java.io.IOException;
 
 final class MessageDeserializer extends StdDeserializer<Message> {
-    public MessageDeserializer() {
+    MessageDeserializer() {
         this(null);
     }
 
-    public MessageDeserializer(Class<?> vc) {
+    private MessageDeserializer(final Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public Message deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+    public Message deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext)
             throws IOException {
 
         JsonNode messageNode = jsonParser.getCodec().readTree(jsonParser);
@@ -30,7 +30,7 @@ final class MessageDeserializer extends StdDeserializer<Message> {
         return builder.build();
     }
 
-    private String address(JsonNode toNode) {
+    private String address(final JsonNode toNode) {
         return toNode.get("Mailbox").asText() + "@" + toNode.get("Domain").asText();
     }
 

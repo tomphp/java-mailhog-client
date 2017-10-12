@@ -10,11 +10,11 @@ import java.io.IOException;
 public final class MessageListFetcher {
     private HTTPClient http;
 
-    public MessageListFetcher(HTTPClient http) {
+    public MessageListFetcher(final HTTPClient http) {
         this.http = http;
     }
 
-    public Messages fetchFrom(String url) {
+    public Messages fetchFrom(final String url) {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Messages.class, new MessagesDeserializer());
@@ -23,7 +23,7 @@ public final class MessageListFetcher {
         Messages messages = null;
 
         try {
-            messages = mapper.readValue(http.get("/api/v2/messages"), Messages.class);
+            messages = mapper.readValue(http.get(url), Messages.class);
         } catch (IOException e) {
             // TODO
             e.printStackTrace();
