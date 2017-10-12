@@ -3,7 +3,7 @@ package io.tomoram.mailhog_client.model;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Messages {
+public final class Messages {
     private final int count;
     private final List<Message> messages;
 

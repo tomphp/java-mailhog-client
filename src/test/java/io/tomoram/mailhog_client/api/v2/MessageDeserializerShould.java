@@ -1,7 +1,8 @@
-package io.tomoram.mailhog_client.json;
+package io.tomoram.mailhog_client.api.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import io.tomoram.mailhog_client.api.v2.MessageDeserializer;
 import io.tomoram.mailhog_client.helpers.JSON;
 import io.tomoram.mailhog_client.model.Message;
 import org.junit.Before;

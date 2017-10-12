@@ -1,15 +1,9 @@
 package io.tomoram.mailhog_client.commands;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.tomoram.mailhog_client.HTTPClient;
-import io.tomoram.mailhog_client.json.MessagesDeserializer;
+import io.tomoram.mailhog_client.api.v2.MessageListFetcher;
 import io.tomoram.mailhog_client.model.Message;
-import io.tomoram.mailhog_client.model.Messages;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public final class GetAllMessages {
@@ -20,20 +14,6 @@ public final class GetAllMessages {
     }
 
     public Stream<Message> execute() {
-        ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(Messages.class, new MessagesDeserializer());
-        mapper.registerModule(module);
-
-        Messages messages = null;
-
-        try {
-            messages = mapper.readValue(http.get("/api/v2/messages"), Messages.class);
-        } catch (IOException e) {
-            // TODO
-            e.printStackTrace();
-        }
-
-        return messages.stream();
+        return new MessageListFetcher(http).fetchFrom("/api/v2/messages").stream();
     }
 }

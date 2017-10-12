@@ -1,4 +1,4 @@
-package io.tomoram.mailhog_client.json;
+package io.tomoram.mailhog_client.api.v2;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -8,7 +8,7 @@ import io.tomoram.mailhog_client.model.Message;
 
 import java.io.IOException;
 
-public final class MessageDeserializer extends StdDeserializer<Message> {
+final class MessageDeserializer extends StdDeserializer<Message> {
     public MessageDeserializer() {
         this(null);
     }

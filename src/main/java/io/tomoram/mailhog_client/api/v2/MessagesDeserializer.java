@@ -1,4 +1,4 @@
-package io.tomoram.mailhog_client.json;
+package io.tomoram.mailhog_client.api.v2;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,15 +8,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.sun.xml.internal.bind.v2.model.core.TypeRef;
 import io.tomoram.mailhog_client.model.Message;
 import io.tomoram.mailhog_client.model.Messages;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MessagesDeserializer extends StdDeserializer<Messages> {
+class MessagesDeserializer extends StdDeserializer<Messages> {
     public MessagesDeserializer() {
         this(null);
     }

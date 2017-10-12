@@ -1,6 +1,7 @@
 package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.HTTPClient;
+import io.tomoram.mailhog_client.exceptions.RequestFailed;
 import io.tomoram.mailhog_client.helpers.JSON;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class GetNumberOfMessagesShould {
 
     @Test
     public void
-    return_an_empty_list_when_there_are_no_messages() {
+    return_an_empty_list_when_there_are_no_messages() throws RequestFailed {
         when(http.get("/api/v2/messages")).thenReturn(
                 "{\n" +
                         "    \"count\": 0,\n" +
@@ -29,7 +30,7 @@ public class GetNumberOfMessagesShould {
 
     @Test
     public void
-    return_1_when_there_is_1_message() {
+    return_1_when_there_is_1_message() throws RequestFailed {
         when(http.get("/api/v2/messages")).thenReturn(
                 "{\n" +
                         "    \"count\": 1,\n" +
