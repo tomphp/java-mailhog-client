@@ -2,6 +2,7 @@ package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.api.MessageListFetcher;
 import io.tomoram.mailhog_client.exceptions.InvalidResponse;
+import io.tomoram.mailhog_client.exceptions.RequestFailed;
 
 public final class GetNumberOfMessages {
 
@@ -11,7 +12,7 @@ public final class GetNumberOfMessages {
         this.messageListFetcher = messageListFetcher;
     }
 
-    public int execute() throws InvalidResponse {
+    public int execute() throws InvalidResponse, RequestFailed {
         return messageListFetcher.fetchFrom("/api/v2/messages").getCount();
     }
 }

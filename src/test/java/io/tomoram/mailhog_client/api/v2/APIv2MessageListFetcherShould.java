@@ -43,4 +43,13 @@ public class APIv2MessageListFetcherShould {
 
         fetcher.fetchFrom("/bad-response");
     }
+
+    @Test(expected = RequestFailed.class)
+    public void
+    throw_RequestFailed_if_the_HTTP_request_failed() throws RequestFailed, InvalidResponse {
+        when(http.get("/bad-request"))
+                .thenThrow(RequestFailed.withErrorStatusCode(500, "GET", "http://something"));
+
+        fetcher.fetchFrom("/bad-request");
+    }
 }

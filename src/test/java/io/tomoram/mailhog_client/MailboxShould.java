@@ -23,7 +23,7 @@ public class MailboxShould {
 
     @Test
     public void
-    choose_a_default_HTTP_client_if_one_is_not_provided() throws InvalidResponse {
+    choose_a_default_HTTP_client_if_one_is_not_provided() throws InvalidResponse, RequestFailed {
         mailbox = new Mailbox("http://localhost:" + wireMockRule.port());
 
         stubFor(get(urlEqualTo("/api/v2/messages"))
