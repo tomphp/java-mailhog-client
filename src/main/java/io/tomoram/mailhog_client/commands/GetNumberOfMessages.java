@@ -13,5 +13,4 @@ public final class GetNumberOfMessages {
     public int execute() {
         return messageListFetcher.fetchFrom("/api/v2/messages").getCount();
     }
-
 }
