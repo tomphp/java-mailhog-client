@@ -1,6 +1,19 @@
 package io.tomoram.mailhog_client.helpers;
 
+import io.tomoram.mailhog_client.model.Message;
+
+import java.util.Arrays;
+
 public class JSON {
+    public static String messageCollection(final String... messages) {
+        return "{\n" +
+                "    \"count\": " + messages.length + ",\n" +
+                "    \"items\": [" + String.join(",", messages) + "],\n" +
+                "    \"start\": 0,\n" +
+                "    \"total\": " + messages.length + "\n" +
+                "}";
+    }
+
     public static String singleMessage() {
         return "{\n" +
                 "  \"Content\": {\n" +

@@ -37,7 +37,7 @@ public class OkHTTPClientShould {
 
     @Test(expected = RequestFailed.class)
     public void
-    throw_an_exception_when_the_request_fails() throws RequestFailed {
+    throw_an_exception_when_a_GET_request_fails() throws RequestFailed {
         stubFor(get(urlEqualTo("/failure"))
                 .willReturn(aResponse().withFault(Fault.MALFORMED_RESPONSE_CHUNK)));
 
@@ -46,7 +46,7 @@ public class OkHTTPClientShould {
 
     @Test(expected = RequestFailed.class)
     public void
-    throw_an_exception_when_the_request_returns_an_error_status_code() throws RequestFailed {
+    throw_an_exception_when_a_GET_request_returns_an_error_status_code() throws RequestFailed {
         stubFor(get(urlEqualTo("/error"))
                 .willReturn(aResponse().withStatus(400)));
 

@@ -21,21 +21,13 @@ public class MailboxShould {
 
     @Test
     public void
-    be_choose_a_default_HTTP_client_if_one_is_not_provided() {
+    choose_a_default_HTTP_client_if_one_is_not_provided() {
         mailbox = new Mailbox("http://localhost:" + wireMockRule.port());
 
         stubFor(get(urlEqualTo("/api/v2/messages"))
                 .willReturn(aResponse()
                         .withStatus(200)
-                        .withBody(
-                                "{\n" +
-                                        "    \"count\": 1,\n" +
-                                        "    \"items\": [\n" +
-                                        JSON.singleMessage() +
-                                        "    ],\n" +
-                                        "    \"start\": 0,\n" +
-                                        "    \"total\": 1\n" +
-                                        "}")));
+                        .withBody(JSON.messageCollection(JSON.singleMessage()))));
 
         assertThat(mailbox.getNumberOfMessages()).isEqualTo(1);
     }
@@ -43,16 +35,7 @@ public class MailboxShould {
     @Test
     public void
     return_the_total_number_of_messages_it_contains() throws RequestFailed {
-        when(http.get("/api/v2/messages")).thenReturn(
-                "{\n" +
-                        "    \"count\": 1,\n" +
-                        "    \"items\": [\n" +
-                        JSON.singleMessage() +
-                        "    ],\n" +
-                        "    \"start\": 0,\n" +
-                        "    \"total\": 1\n" +
-                        "}");
-
+        when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection(JSON.singleMessage()));
 
         assertThat(mailbox.getNumberOfMessages()).isEqualTo(1);
     }

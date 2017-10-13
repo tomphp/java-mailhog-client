@@ -16,14 +16,7 @@ public class GetNumberOfMessagesShould {
     @Test
     public void
     return_an_empty_list_when_there_are_no_messages() throws RequestFailed {
-        when(http.get("/api/v2/messages")).thenReturn(
-                "{\n" +
-                        "    \"count\": 0,\n" +
-                        "    \"items\": [],\n" +
-                        "    \"start\": 0,\n" +
-                        "    \"total\": 0\n" +
-                        "}"
-        );
+        when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection());
 
         assertThat(command.execute()).isEqualTo(0);
     }
@@ -31,15 +24,7 @@ public class GetNumberOfMessagesShould {
     @Test
     public void
     return_1_when_there_is_1_message() throws RequestFailed {
-        when(http.get("/api/v2/messages")).thenReturn(
-                "{\n" +
-                        "    \"count\": 1,\n" +
-                        "    \"items\": [\n" +
-                        JSON.singleMessage() +
-                        "    ],\n" +
-                        "    \"start\": 0,\n" +
-                        "    \"total\": 1\n" +
-                        "}");
+        when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection(JSON.singleMessage()));
 
         assertThat(command.execute()).isEqualTo(1);
     }

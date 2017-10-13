@@ -27,26 +27,14 @@ public class MessagesDeserializerShould {
     @Test
     public void
     deserialize_an_empty_collection() throws IOException {
-        String json = "{\n" +
-                "    \"count\": 0,\n" +
-                "    \"items\": [],\n" +
-                "    \"start\": 0,\n" +
-                "    \"total\": 0\n" +
-                "}";
-
-        assertThat(mapper.readValue(json, Messages.class).getCount()).isEqualTo(0);
+        assertThat(mapper.readValue(JSON.messageCollection(), Messages.class).getCount()).isEqualTo(0);
     }
 
 
     @Test
     public void
     deserialize_a_collection_with_1_messages() throws IOException {
-        String json = "{\n" +
-                "    \"count\": 1,\n" +
-                "    \"items\": [" + JSON.singleMessage() + "],\n" +
-                "    \"start\": 0,\n" +
-                "    \"total\": 1\n" +
-                "}";
+        String json = JSON.messageCollection(JSON.singleMessage());
 
         assertThat(mapper.readValue(json, Messages.class).getCount()).isEqualTo(1);
     }
@@ -54,12 +42,7 @@ public class MessagesDeserializerShould {
     @Test
     public void
     deserialize_the_messages_in_collection() throws IOException {
-        String json = "{\n" +
-                "    \"count\": 1,\n" +
-                "    \"items\": [" + JSON.singleMessage() + "],\n" +
-                "    \"start\": 0,\n" +
-                "    \"total\": 1\n" +
-                "}";
+        String json = JSON.messageCollection(JSON.singleMessage());
 
         Message expected = Message.builder()
                 .setSender("tomoram@tom-mac")
