@@ -52,8 +52,8 @@ public class JSON {
                 "  },\n" +
                 "  \"Created\": \"2017-10-08T22:40:21.750865489Z\",\n" +
                 "  \"From\": {\n" +
-                "    \"Domain\": \"tom-mac\",\n" +
-                "    \"Mailbox\": \"tomoram\",\n" +
+                "    \"Domain\": \"rhino.com\",\n" +
+                "    \"Mailbox\": \"mental\",\n" +
                 "    \"Params\": \"\",\n" +
                 "    \"Relays\": null\n" +
                 "  },\n" +

@@ -44,7 +44,7 @@ public class MessagesDeserializerShould {
         String json = JSON.messageCollection(JSON.singleMessage());
 
         Message expected = Message.builder()
-                .setSender("tomoram@tom-mac")
+                .setSender("mental@rhino.com")
                 .addRecipient("george@a-happy-place.com")
                 .build();
 
