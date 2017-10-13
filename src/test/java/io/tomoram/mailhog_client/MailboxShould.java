@@ -11,6 +11,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 public class MailboxShould {
     @Rule
@@ -34,9 +35,17 @@ public class MailboxShould {
 
     @Test
     public void
-    return_the_total_number_of_messages_it_contains() throws RequestFailed {
+    return_the_number_of_messages_from_getNumberOfMessages() throws RequestFailed {
         when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection(JSON.singleMessage()));
 
         assertThat(mailbox.getNumberOfMessages()).isEqualTo(1);
+    }
+
+    @Test
+    public void
+    send_a_delete_request_when_calling_empty() {
+        mailbox.empty();
+
+        verify(http).delete("/api/v1/messages");
     }
 }

@@ -1,15 +1,12 @@
 package io.tomoram.mailhog_client.commands;
 
-import io.tomoram.mailhog_client.HTTPClient;
 import io.tomoram.mailhog_client.api.MessageListFetcher;
 import io.tomoram.mailhog_client.exceptions.RequestFailed;
-import io.tomoram.mailhog_client.helpers.JSON;
 import io.tomoram.mailhog_client.model.Message;
 import io.tomoram.mailhog_client.model.Messages;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
