@@ -1,18 +1,17 @@
 package io.tomoram.mailhog_client.commands;
 
-import io.tomoram.mailhog_client.HTTPClient;
-import io.tomoram.mailhog_client.api.v2.MessageListFetcher;
+import io.tomoram.mailhog_client.api.MessageListFetcher;
 
 public final class GetNumberOfMessages {
 
-    private final HTTPClient http;
+    private final MessageListFetcher messageListFetcher;
 
-    public GetNumberOfMessages(final HTTPClient http) {
-        this.http = http;
+    public GetNumberOfMessages(final MessageListFetcher messageListFetcher) {
+        this.messageListFetcher = messageListFetcher;
     }
 
     public int execute() {
-        return new MessageListFetcher(http).fetchFrom("/api/v2/messages").getCount();
+        return messageListFetcher.fetchFrom("/api/v2/messages").getCount();
     }
 
 }

@@ -30,7 +30,6 @@ public class MessagesDeserializerShould {
         assertThat(mapper.readValue(JSON.messageCollection(), Messages.class).getCount()).isEqualTo(0);
     }
 
-
     @Test
     public void
     deserialize_a_collection_with_1_messages() throws IOException {

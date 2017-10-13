@@ -7,13 +7,14 @@ import io.tomoram.mailhog_client.model.Messages;
 
 import java.io.IOException;
 
-public final class MessageListFetcher {
+public final class APIv2MessageListFetcher implements io.tomoram.mailhog_client.api.MessageListFetcher {
     private HTTPClient http;
 
-    public MessageListFetcher(final HTTPClient http) {
+    public APIv2MessageListFetcher(final HTTPClient http) {
         this.http = http;
     }
 
+    @Override
     public Messages fetchFrom(final String url) {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();

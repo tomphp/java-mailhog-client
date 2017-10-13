@@ -1,5 +1,6 @@
 package io.tomoram.mailhog_client;
 
+import io.tomoram.mailhog_client.api.v2.APIv2MessageListFetcher;
 import io.tomoram.mailhog_client.clients.OkHTTPClient;
 import io.tomoram.mailhog_client.commands.GetNumberOfMessages;
 
@@ -16,6 +17,6 @@ public final class Mailbox {
     }
 
     public int getNumberOfMessages() {
-        return new GetNumberOfMessages(client).execute();
+        return new GetNumberOfMessages(new APIv2MessageListFetcher(client)).execute();
     }
 }

@@ -1,22 +1,28 @@
 package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.HTTPClient;
+import io.tomoram.mailhog_client.api.MessageListFetcher;
 import io.tomoram.mailhog_client.exceptions.RequestFailed;
 import io.tomoram.mailhog_client.helpers.JSON;
+import io.tomoram.mailhog_client.model.Message;
+import io.tomoram.mailhog_client.model.Messages;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class GetNumberOfMessagesShould {
-    HTTPClient http = mock(HTTPClient.class);
-    GetNumberOfMessages command = new GetNumberOfMessages(http);
+    final MessageListFetcher fetcher = mock(MessageListFetcher.class);
+    final GetNumberOfMessages command = new GetNumberOfMessages(fetcher);
 
     @Test
     public void
     return_an_empty_list_when_there_are_no_messages() throws RequestFailed {
-        when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection());
+        when(fetcher.fetchFrom("/api/v2/messages")).thenReturn(new Messages(0, new ArrayList<>()));
 
         assertThat(command.execute()).isEqualTo(0);
     }
@@ -24,7 +30,12 @@ public class GetNumberOfMessagesShould {
     @Test
     public void
     return_1_when_there_is_1_message() throws RequestFailed {
-        when(http.get("/api/v2/messages")).thenReturn(JSON.messageCollection(JSON.singleMessage()));
+        Message message = Message.builder()
+                .addRecipient("jeff@my-name-is.com")
+                .setSender("sales@miscellanious-products.com")
+                .build();
+
+        when(fetcher.fetchFrom("/api/v2/messages")).thenReturn(new Messages(1, Arrays.asList(message)));
 
         assertThat(command.execute()).isEqualTo(1);
     }
