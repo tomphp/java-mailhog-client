@@ -15,8 +15,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class GetNumberOfMessagesShould {
-    final MessageListFetcher fetcher = mock(MessageListFetcher.class);
-    final GetNumberOfMessages command = new GetNumberOfMessages(fetcher);
+    private final MessageListFetcher fetcher = mock(MessageListFetcher.class);
+    private final GetNumberOfMessages command = new GetNumberOfMessages(fetcher);
 
     @Test
     public void
