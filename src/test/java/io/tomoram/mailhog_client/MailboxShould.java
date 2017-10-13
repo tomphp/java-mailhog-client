@@ -43,6 +43,15 @@ public class MailboxShould {
 
     @Test
     public void
+    return_the_number_of_messages_for_the_given_recipient_from_getNumberOfMessagesSentTo() throws RequestFailed {
+        when(http.get("/api/v2/messages?kind=to&query=test@example.com"))
+                .thenReturn(JSON.messageCollection(JSON.singleMessage(), JSON.singleMessage()));
+
+        assertThat(mailbox.getNumberOfMessagesSentTo("test@example.com")).isEqualTo(2);
+    }
+
+    @Test
+    public void
     send_a_delete_request_when_calling_empty() {
         mailbox.empty();
 
