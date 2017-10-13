@@ -1,10 +1,8 @@
 package io.tomoram.mailhog_client.commands;
 
-import io.tomoram.mailhog_client.HTTPClient;
 import io.tomoram.mailhog_client.api.MessageListFetcher;
 import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 import io.tomoram.mailhog_client.exceptions.RequestFailed;
-import io.tomoram.mailhog_client.helpers.JSON;
 import io.tomoram.mailhog_client.model.Message;
 import io.tomoram.mailhog_client.model.Messages;
 import org.junit.Test;
