@@ -2,6 +2,7 @@ package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.HTTPClient;
 import io.tomoram.mailhog_client.api.MessageListFetcher;
+import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 import io.tomoram.mailhog_client.exceptions.RequestFailed;
 import io.tomoram.mailhog_client.helpers.JSON;
 import io.tomoram.mailhog_client.model.Message;
@@ -21,7 +22,7 @@ public class GetNumberOfMessagesShould {
 
     @Test
     public void
-    return_an_empty_list_when_there_are_no_messages() throws RequestFailed {
+    return_an_empty_list_when_there_are_no_messages() throws RequestFailed, InvalidResponse {
         when(fetcher.fetchFrom("/api/v2/messages")).thenReturn(new Messages(0, new ArrayList<>()));
 
         assertThat(command.execute()).isEqualTo(0);
@@ -29,7 +30,7 @@ public class GetNumberOfMessagesShould {
 
     @Test
     public void
-    return_1_when_there_is_1_message() throws RequestFailed {
+    return_1_when_there_is_1_message() throws RequestFailed, InvalidResponse {
         Message message = Message.builder()
                 .addRecipient("jeff@my-name-is.com")
                 .setSender("sales@miscellanious-products.com")

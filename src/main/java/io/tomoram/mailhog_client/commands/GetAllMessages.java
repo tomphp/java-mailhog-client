@@ -1,6 +1,7 @@
 package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.api.MessageListFetcher;
+import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 import io.tomoram.mailhog_client.model.Message;
 
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ public final class GetAllMessages {
         this.messageListFetcher = messageListFetcher;
     }
 
-    public Stream<Message> execute() {
+    public Stream<Message> execute() throws InvalidResponse {
         return messageListFetcher.fetchFrom("/api/v2/messages").stream();
     }
 }

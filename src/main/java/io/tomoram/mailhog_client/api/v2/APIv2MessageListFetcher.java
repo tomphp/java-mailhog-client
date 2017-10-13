@@ -3,6 +3,7 @@ package io.tomoram.mailhog_client.api.v2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.tomoram.mailhog_client.HTTPClient;
+import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 import io.tomoram.mailhog_client.model.Messages;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public final class APIv2MessageListFetcher implements io.tomoram.mailhog_client.
     }
 
     @Override
-    public Messages fetchFrom(final String url) {
+    public Messages fetchFrom(final String url) throws InvalidResponse {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Messages.class, new MessagesDeserializer());
@@ -26,8 +27,7 @@ public final class APIv2MessageListFetcher implements io.tomoram.mailhog_client.
         try {
             messages = mapper.readValue(http.get(url), Messages.class);
         } catch (IOException e) {
-            // TODO
-            e.printStackTrace();
+            throw InvalidResponse.forJSONParsingError("/url", e);
         }
 
         return messages;

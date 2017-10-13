@@ -5,6 +5,7 @@ import io.tomoram.mailhog_client.commands.GetNumberOfMessagesSentTo;
 import io.tomoram.mailhog_client.clients.OkHTTPClient;
 import io.tomoram.mailhog_client.commands.DeleteAllMessages;
 import io.tomoram.mailhog_client.commands.GetNumberOfMessages;
+import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 
 public final class Mailbox {
 
@@ -18,11 +19,11 @@ public final class Mailbox {
         this.client = client;
     }
 
-    public int getNumberOfMessages() {
+    public int getNumberOfMessages() throws InvalidResponse {
         return new GetNumberOfMessages(getAPIv2MessageListFetcher()).execute();
     }
 
-    public int getNumberOfMessagesSentTo(final String recipientEmail) {
+    public int getNumberOfMessagesSentTo(final String recipientEmail) throws InvalidResponse {
         return new GetNumberOfMessagesSentTo(getAPIv2MessageListFetcher()).execute(recipientEmail);
     }
 

@@ -1,6 +1,7 @@
 package io.tomoram.mailhog_client.commands;
 
 import io.tomoram.mailhog_client.api.MessageListFetcher;
+import io.tomoram.mailhog_client.exceptions.InvalidResponse;
 import io.tomoram.mailhog_client.exceptions.RequestFailed;
 import io.tomoram.mailhog_client.model.Message;
 import io.tomoram.mailhog_client.model.Messages;
@@ -19,7 +20,7 @@ public class GetAllMessagesShould {
 
     @Test
     public void
-    return_an_empty_stream_if_there_are_no_messages() throws RequestFailed {
+    return_an_empty_stream_if_there_are_no_messages() throws RequestFailed, InvalidResponse {
         when(fetcher.fetchFrom("/api/v2/messages")).thenReturn(new Messages(0, Arrays.asList()));
 
         assertThat(command.execute().count()).isEqualTo(0);
@@ -27,7 +28,7 @@ public class GetAllMessagesShould {
 
     @Test
     public void
-    return_a_single_email_when_only_1_is_in_the_mailbox() throws RequestFailed {
+    return_a_single_email_when_only_1_is_in_the_mailbox() throws RequestFailed, InvalidResponse {
         Message message = Message.builder()
                 .addRecipient("jeff@my-name-is.com")
                 .setSender("sales@miscellanious-products.com")
