@@ -8,6 +8,6 @@ public class InvalidResponse extends IOException implements MailHogClientExcepti
     }
 
     public static InvalidResponse forJSONParsingError(final String url, final Throwable cause) {
-        return new InvalidResponse("There was an error when parsing the JSON response from " + url +".", cause);
+        return new InvalidResponse("There was an error when parsing the JSON response from " + url + ".", cause);
     }
 }

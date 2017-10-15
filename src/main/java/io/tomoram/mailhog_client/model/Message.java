@@ -6,7 +6,6 @@ import java.util.Arrays;
 public final class Message {
     private final String sender;
     private final String[] recipients;
-
     public Message(final String sender, final String[] recipients) {
         this.sender = sender;
         this.recipients = recipients;
@@ -17,7 +16,7 @@ public final class Message {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -30,10 +29,13 @@ public final class Message {
 
     @Override
     public int hashCode() {
+        final int primeNumber = 31;
         int result = sender.hashCode();
-        result = 31 * result + Arrays.hashCode(recipients);
+
+        result = primeNumber * result + Arrays.hashCode(recipients);
         return result;
     }
+
 
     @Override
     public String toString() {

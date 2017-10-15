@@ -9,4 +9,6 @@
     <suppress checks="HiddenField" files="."/>
     <suppress checks="LineLength" files="."/>
     <suppress checks="OperatorWrap" files="."/>
+    <suppress checks="NeedBraces" files="." />
+    <suppress checks="AvoidInlineConditionals" files="." />
 </suppressions>
