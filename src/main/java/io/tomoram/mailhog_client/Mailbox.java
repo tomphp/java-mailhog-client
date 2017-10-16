@@ -28,7 +28,7 @@ public final class Mailbox {
         return new GetNumberOfMessagesSentTo(getAPIv2MessageListFetcher()).execute(recipientEmail);
     }
 
-    public void empty() {
+    public void empty() throws RequestFailed {
         new DeleteAllMessages(client).execute();
     }
 

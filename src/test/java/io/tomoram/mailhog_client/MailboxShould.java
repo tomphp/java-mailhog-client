@@ -53,7 +53,7 @@ public class MailboxShould {
 
     @Test
     public void
-    send_a_delete_request_when_calling_empty() {
+    send_a_delete_request_when_calling_empty() throws RequestFailed {
         mailbox.empty();
 
         verify(http).delete("/api/v1/messages");

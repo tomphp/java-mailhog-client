@@ -52,4 +52,23 @@ public class OkHTTPClientShould {
 
         client.get("/error");
     }
+
+    @Test
+    public void
+    send_a_DELETE_request() throws RequestFailed {
+        stubFor(delete(urlEqualTo("/thing-to-delete"))
+                .willReturn(aResponse()
+                        .withStatus(200)));
+
+        client.delete("/thing-to-delete");
+    }
+
+    @Test(expected = RequestFailed.class)
+    public void
+    throw_an_exception_when_a_DELETE_request_fails() throws RequestFailed {
+        stubFor(delete(urlEqualTo("/failure"))
+                .willReturn(aResponse().withFault(Fault.MALFORMED_RESPONSE_CHUNK)));
+
+        client.delete("/failure");
+    }
 }

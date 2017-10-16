@@ -28,8 +28,13 @@ public final class OkHTTPClient implements HTTPClient {
     }
 
     @Override
-    public String delete(final String path) {
-        return null;
+    public String delete(final String path) throws RequestFailed {
+        Request request = new Request.Builder()
+                .url(url(path))
+                .delete()
+                .build();
+
+        return executeRequest(path, request);
     }
 
     private String executeRequest(final String path, final Request request) throws RequestFailed {
